@@ -1,0 +1,4 @@
+/* set min height for card component */
+.card-content {
+  min-height: 288px;
+}
