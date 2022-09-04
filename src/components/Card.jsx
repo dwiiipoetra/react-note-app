@@ -2,21 +2,26 @@ import React, { useState } from "react";
 import { showFormattedDate } from "../utils";
 
 // "datas" is state from App.js
-const Card = ({ id, title, body, createdAt, archived, datas }) => {
-  // return archived(false);
-  // return !archived ? (
-
-  console.log(datas);
-  function removeItem(key, e) {
-    e.preventDefault();
-    const updateList = datas.filter((item) => item.id !== key);
-    setState(updateList);
-
-    console.log(datas);
-  }
-
+const Card = ({
+  id,
+  title,
+  body,
+  createdAt,
+  archived,
+  myDatas,
+  myRemoveData,
+}) => {
   // state for toggle card
   const [show, setShow] = useState(true);
+  const removeItem = (e) => {
+    e.preventDefault();
+    let updateList = myDatas.filter((item) => item.id !== id);
+    let newValue = { list: updateList };
+    myRemoveData((data) => ({
+      ...data,
+      ...newValue,
+    }));
+  };
 
   return (
     <div className="column is-3">
@@ -43,7 +48,7 @@ const Card = ({ id, title, body, createdAt, archived, datas }) => {
               <a
                 href="#"
                 className="card-footer-item button is-danger"
-                onClick={(e) => removeItem(id, e)}
+                onClick={(e) => removeItem(e)}
               >
                 Delete
               </a>
@@ -55,8 +60,6 @@ const Card = ({ id, title, body, createdAt, archived, datas }) => {
         ) : null}
       </div>
     </div>
-    // ) : (
-    // ""
   );
 };
 

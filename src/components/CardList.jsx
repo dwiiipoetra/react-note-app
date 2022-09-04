@@ -1,25 +1,25 @@
 import React from "react";
 import Card from "./Card";
-
-const CardList = (props) => {
-  // const CardList = ({ datas }) => {
-  // console.log(props.datas);
+const CardList = ({ datas, removeData }) => {
+  console.log(datas);
+  // const CardList = (props) => {bisa juga memakai cara ini
   let newDatas = [];
   let insideData = [];
   let count = 1;
-  for (let i = 0; i < props.datas.length; i++) {
-    insideData.push(props.datas[i]);
+  for (let i = 0; i < datas.length; i++) {
+    insideData.push(datas[i]);
     if (count % 4 === 0) {
       newDatas.push(insideData);
       insideData = [];
       count = 1;
-    } else if (i === props.datas.length - 1) {
+    } else if (i === datas.length - 1) {
       newDatas.push(insideData);
       insideData = [];
     } else {
       count++;
     }
   }
+
   return (
     <>
       {/* reconstruct array */}
@@ -35,7 +35,8 @@ const CardList = (props) => {
                 body={d.body}
                 createdAt={d.createdAt}
                 archived={d.archived}
-                datass={props.datas}
+                myDatas={datas}
+                myRemoveData={removeData}
               />
             ))}
           </div>

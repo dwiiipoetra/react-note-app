@@ -160,10 +160,11 @@ const App = () => {
               <h1 className="title">Active Note</h1>
             </div>
           </div>
-          {/* <div className="columns is-mobile"> */}
-          {/* <CardList datas={data.list} /> */}
-          <CardList datas={data.list} />
-          {/* </div> */}
+          {data.list.length ? (
+            <CardList datas={data.list} removeData={setData} />
+          ) : (
+            <p>Tidak ada Catatan</p>
+          )}
         </section>
 
         {/* Archive Note Section */}
